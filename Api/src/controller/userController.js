@@ -26,6 +26,7 @@ server.get('/afazeres', async (req, res) => {
 server.post('/afazeres', async (req, res) => {
     try {
         const { afazer } = req.body;
+        if (!afazer.trim()) throw new Error("Deu erro");
         const r = await cadastrarAfazer(afazer);
         res.send(r);
     } catch (err) {

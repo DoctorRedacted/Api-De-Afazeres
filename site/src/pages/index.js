@@ -22,6 +22,10 @@ export default function Index() {
         const r = await deletando(id);
         consultarApi();
     }
+
+    function handleEnterPress(e) {
+        if (e.keyCode === 13) enviarClick();
+    }
     
     useEffect(() => {
         consultarApi();
@@ -30,8 +34,8 @@ export default function Index() {
     return (
         <main className="main-container">
                 <h1>API DE AFAZERES DAORA</h1>
-                <input style={{textAlign: "center"}} placeholder="INSIRA AQUI" value={afazer} onChange={e => setAfazer(e.target.value)}></input>
-                <button onClick={enviarClick}>ENVIAR</button>
+                <input style={{textAlign: "center"}} placeholder="INSIRA AQUI" value={afazer} onChange={e => setAfazer(e.target.value)} onKeyDown={handleEnterPress}></input>
+                <button className="btn" onClick={enviarClick}>ENVIAR</button>
                 {lista.map(item => 
                     <ul style={{listStyle: "none", marginRight: "2em"}}>
                         <li style={{cursor: "pointer"}} onClick={() => deletarApi(item.id)}>{item.afazer}</li>
